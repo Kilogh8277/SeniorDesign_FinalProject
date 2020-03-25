@@ -53,8 +53,8 @@ void loop() {
       Serial.println(rightVal);
       
       // Set the motor speeds
-      Motors.setM1Speed(leftVal);
-      Motors.setM2Speed(rightVal);
+      Motors.setM1Speed(-leftVal);
+      Motors.setM2Speed(-rightVal);
     }
   }
   else {
