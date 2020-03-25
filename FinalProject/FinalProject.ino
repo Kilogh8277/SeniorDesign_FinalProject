@@ -23,7 +23,7 @@ void setup() {
   pinMode(leftValIn, INPUT);
   pinMode(rightValIn, INPUT);
 
-  attachInterrupt(digitalPinToInterrupt(buttonPin), changeMotorState, RISING);
+  attachInterrupt(digitalPinToInterrupt(buttonPin), changeMotorState, CHANGE);
 }
 
 void loop() {
