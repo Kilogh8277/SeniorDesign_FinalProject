@@ -58,15 +58,10 @@ void loop() {
     }
   }
   else {
-    Motors.setSpeed(0);
+    Motors.setSpeeds(0, 0);
   }
 }
 
 void changeMotorState() {
-  if (motorOn == 1) {
-    motorOn = 0;
-  }
-  else {
-    motorOn = 1;
-  }
+  motorOn = !motorOn;
 }
