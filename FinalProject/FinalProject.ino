@@ -22,46 +22,35 @@ void setup() {
   // Initialize the pins for reading from PLC
   pinMode(leftValIn, INPUT);
   pinMode(rightValIn, INPUT);
-
-  attachInterrupt(digitalPinToInterrupt(buttonPin), changeMotorState, CHANGE);
 }
 
 void loop() {
-  if (motorOn == 1) {
-    // Read the values for the left and right motors
-    leftVal = analogRead(leftValIn);
-    rightVal = analogRead(rightValIn);
-  
-      //Serial.print("The left value is ");
-      //Serial.println(leftVal);
-  
-      //Serial.print("The right value is ");
-      //Serial.println(rightVal);
-    if (leftVal == 0 || rightVal == 0) {
-      Motors.setM1Speed(0);
-      Motors.setM2Speed(0);
-    }
-    else {
-      // Map the values, where 1 corresponds to -400 and 255 corresponds to 400
-      leftVal = map(leftVal, 1, 1023, -400, 400);
-      rightVal = map(rightVal, 1, 1023, -400, 400);
-  
-      Serial.print("The left value is ");
-      Serial.println(leftVal);
-  
-      Serial.print("The right value is ");
-      Serial.println(rightVal);
-      
-      // Set the motor speeds
-      Motors.setM1Speed(-leftVal);
-      Motors.setM2Speed(-rightVal);
-    }
+  // Read the values for the left and right motors
+  leftVal = analogRead(leftValIn);
+  rightVal = analogRead(rightValIn);
+
+    Serial.print("The left value is ");
+    Serial.println(leftVal);
+
+    Serial.print("The right value is ");
+    Serial.println(rightVal);
+  if (leftVal == 0 || rightVal == 0) {
+    Motors.setM1Speed(0);
+    Motors.setM2Speed(0);
   }
   else {
-    Motors.setSpeeds(0, 0);
-  }
-}
+    // Map the values, where 1 corresponds to -400 and 255 corresponds to 400
+    leftVal = map(leftVal, 10, 1023, -200, 200);
+    rightVal = map(rightVal, 10, 1023, -200, 200);
 
-void changeMotorState() {
-  motorOn = !motorOn;
+    //Serial.print("The left value is ");
+    //Serial.println(leftVal);
+
+    //Serial.print("The right value is ");
+    //Serial.println(rightVal);
+    
+    // Set the motor speeds
+    Motors.setM1Speed(leftVal);
+    Motors.setM2Speed(rightVal);
+  }
 }
