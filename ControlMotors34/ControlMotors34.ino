@@ -16,19 +16,19 @@ void loop() {
         Serial.println("Stopping motors!"); 
       }
       else if(motorMove == 'a') {
-        Motors.setM1Speed(200); 
+        Motors.setM1Speed(400); 
         Serial.println("Setting M3 to 200");   
       }
       else if (motorMove == 'd') {
-        Motors.setM2Speed(200);
+        Motors.setM2Speed(400);
         Serial.println("Setting M4 to 200");     
       }
       else if (motorMove == 'z') {
-        Motors.setM1Speed(-200);
+        Motors.setM1Speed(-400);
         Serial.println("Setting M3 to -200"); 
       }
       else if (motorMove == 'c') {
-        Motors.setM2Speed(-200);
+        Motors.setM2Speed(-400);
         Serial.println("Setting M4 to -200"); 
       }
   }

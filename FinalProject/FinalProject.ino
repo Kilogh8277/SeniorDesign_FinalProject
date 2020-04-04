@@ -11,6 +11,9 @@ volatile bool motorOn = 1;
 
 signed int leftVal;
 signed int rightVal;
+
+char userVal = 'n';
+
 DualVNH5019MotorShield Motors; // Declare Motors
 
 void setup() {
@@ -29,19 +32,19 @@ void loop() {
   leftVal = analogRead(leftValIn);
   rightVal = analogRead(rightValIn);
 
-    Serial.print("The left value is ");
-    Serial.println(leftVal);
+    //Serial.print("The left value is ");
+    //Serial.println(leftVal);
 
-    Serial.print("The right value is ");
-    Serial.println(rightVal);
-  if (leftVal == 0 || rightVal == 0) {
+    //Serial.print("The right value is ");
+    //Serial.println(rightVal);
+  if ((leftVal >= 505 && leftVal <= 519) || (rightVal >= 505 && rightVal <= 519)) {
     Motors.setM1Speed(0);
     Motors.setM2Speed(0);
   }
   else {
     // Map the values, where 1 corresponds to -400 and 255 corresponds to 400
-    leftVal = map(leftVal, 10, 1023, -200, 200);
-    rightVal = map(rightVal, 10, 1023, -200, 200);
+    leftVal = map(leftVal, 0, 1023, -400, 400);
+    rightVal = map(rightVal, 0, 1023, -400, 400);
 
     //Serial.print("The left value is ");
     //Serial.println(leftVal);
@@ -52,5 +55,5 @@ void loop() {
     // Set the motor speeds
     Motors.setM1Speed(leftVal);
     Motors.setM2Speed(rightVal);
-  }
+    }
 }
